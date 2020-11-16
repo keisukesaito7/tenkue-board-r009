@@ -12,6 +12,7 @@
 
   <body>
     <%= render partial: "/shared/header" %>
+    <%= render partial: "/templates/notifications", locals: { flash: flash } %>
     <div class="wrapper">
       <%= yield %>
     </div>
