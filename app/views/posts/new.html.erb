@@ -5,7 +5,7 @@
         <span>新規投稿</span>
       </h3>
       <%# フォームを設置 %>
-      <%= form_for(@post) do |f| %>
+      <%= form_with(model: @post, local: true ) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form_area">
           <div  class="form_area__field">
