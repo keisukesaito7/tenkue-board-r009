@@ -1,6 +1,9 @@
-<%# エラーメッセージの部分テンプレート %>
+<% if @post.errors.any? %>
   <div class="vali_alert">
     <ul>
-      <li>エラーメッセージ</li>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
   </div>
+<% end %>
