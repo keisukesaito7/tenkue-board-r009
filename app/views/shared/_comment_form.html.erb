@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <%= form_with(model: [@post, @comment], local: true) do |f| %>
+    <%= f.text_area :comment, autofocus: true, placeholder: 'コメントを入力', value: @comment.comment %>
+    <%= f.submit '送信' %>
+  <% end %>
+<% end %>
