@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  
+
   def index
   end
 
@@ -11,7 +11,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      flash[:success] = "登録しました"
       redirect_to root_path
     else
       render 'posts/new'
