@@ -1,8 +1,16 @@
+<% @comments.each do |comment| %>
+  <%= comment.user.name %>
+  <% if current_user == comment.user %>
+    <%= link_to '編集', '#' %>
+    <%= link_to '削除', '#', method: :delete, data: { confirm: '本当に削除して良いですか?', cancel: 'やめる', commit: '削除する'}, title: '削除確認' %>
+  <% end %>
+<% end %>
+
 <div class="comment_area">  
   <% if user_signed_in? %>
     <div class="comment_area__form_box">  
       <%= form_with(model: [@post, @comment], class: "comment_area__form_box__form", local: true) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+        <%= render 'shared/error_messages', model: f.object %>
         <div class="comment_area__form_box__form__field">  
           <%= f.text_area :comment, autofocus: true, placeholder: 'コメントを入力', value: @comment.comment %>
         </div>
