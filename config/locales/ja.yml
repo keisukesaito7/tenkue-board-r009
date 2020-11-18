@@ -1,7 +1,5 @@
 ja:
   activerecord:
     attributes:
-      user:
-        name: 名前
       post:
         content: 投稿内容
