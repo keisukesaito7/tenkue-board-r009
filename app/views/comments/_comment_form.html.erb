@@ -1,7 +1,15 @@
-<% if user_signed_in? %>
-  <%= form_with(model: [@post, @comment], local: true) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <%= f.text_area :comment, autofocus: true, placeholder: 'コメントを入力', value: @comment.comment %>
-    <%= f.submit '送信' %>
+<div class="comment_area">  
+  <% if user_signed_in? %>
+    <div class="comment_area__form_box">  
+      <%= form_with(model: [@post, @comment], class: "comment_area__form_box__form", local: true) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="comment_area__form_box__form__field">  
+          <%= f.text_area :comment, autofocus: true, placeholder: 'コメントを入力', value: @comment.comment %>
+        </div>
+        <div class="comment_area__form_box__form__action">  
+          <%= f.submit '送信', class: "comment_area__form_box__form__action__btn" %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>
