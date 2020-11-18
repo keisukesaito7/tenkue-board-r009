@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
   root to: "posts#index"
+  resources :posts, except: :index
   resources :comments, only: [:create, :edit, :update, :destroy]
 end
