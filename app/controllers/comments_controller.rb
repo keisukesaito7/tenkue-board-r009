@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   def create
     @comment = @post.comments.new(comment_params)
-    @comment.user = current_user
     if @comment.save
       redirect_to post_path(@post.id)
     else
