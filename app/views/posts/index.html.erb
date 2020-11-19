@@ -30,12 +30,19 @@
                     <span>コメント数</span>
                   </li>
                   <% if user_signed_in? %>
-                    <li>
-                      <%= link_to post_likes_path(post), class: "post_action_btn", method: :post do %>
-                        <i class="far fa-heart"></i>
-                        <span><%= post.likes.count if post.likes.count > 0 %></span>
-                      <% end %>
-                    </li>
+                    <% if post.already_liked?(current_user) %>
+                      <li class="post_liked">
+                        <i class="fas fa-heart"></i>
+                        <span><%= post.likes.count %></span>
+                      </li>
+                    <% else %>
+                      <li>
+                        <%= link_to post_likes_path(post), class: "post_action_btn", method: :post do %>
+                          <i class="far fa-heart"></i>
+                          <span><%= post.likes.count if post.likes.count > 0 %></span>
+                        <% end %>
+                      </li>
+                    <% end %>
                   <% else %>
                     <li>
                       <%= link_to post_likes_path(post), class: "post_action_btn", method: :post do %>
