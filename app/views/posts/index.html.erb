@@ -29,10 +29,13 @@
                     <i class="far fa-comment-alt"></i>
                     <span>コメント数</span>
                   </li>
-                  <li>
-                    <i class="far fa-heart"></i>
-                    <span><%= post.likes.count %></span>
-                  </li>
+                  <% if user_signed_in? %>
+                  <% else %>  
+                    <li>
+                      <i class="far fa-heart"></i>
+                      <span><%= post.likes.count %></span>
+                    </li>
+                  <% end %>
                 </ul>
                 <% if user_signed_in? && current_user.id == post.user_id %>
                   <ul class="post__bottom_box__admin_actions">
