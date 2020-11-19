@@ -5,6 +5,9 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user).order("created_at DESC")
   end
 
+  def show
+  end
+
   def new
     @post = Post.new
   end
