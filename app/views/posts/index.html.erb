@@ -38,8 +38,10 @@
                     </li>
                   <% else %>
                     <li>
-                      <i class="far fa-heart"></i>
-                      <span><%= post.likes.count if post.likes.count > 0 %></span>
+                      <%= link_to post_likes_path(post), class: "post_action_btn", method: :post do %>
+                        <i class="far fa-heart"></i>
+                        <span><%= post.likes.count if post.likes.count > 0 %></span>
+                      <% end %>
                     </li>
                   <% end %>
                 </ul>
