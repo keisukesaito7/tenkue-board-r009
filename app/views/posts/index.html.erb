@@ -33,7 +33,7 @@
                   <% else %>  
                     <li>
                       <i class="far fa-heart"></i>
-                      <span><%= post.likes.count %></span>
+                      <span><%= post.likes.count if post.likes.count > 0 %></span>
                     </li>
                   <% end %>
                 </ul>
