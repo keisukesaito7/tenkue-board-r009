@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_post, only: [:create]
+  
   def create
     @comment = @post.comments.new(comment_params)
     if @comment.save
@@ -16,6 +18,6 @@ class CommentsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
   end
 end
