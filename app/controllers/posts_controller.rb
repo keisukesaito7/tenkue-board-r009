@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comment = @post.comments.new(user_id: current_user.id)
+    @comment = @post.comments.new(user_id: current_user.id) if current_user
     @comments = @post.comments.includes(:user).order("created_at DESC")
   end
 
