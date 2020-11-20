@@ -29,30 +29,7 @@
                     <i class="far fa-comment-alt"></i>
                     <span>コメント数</span>
                   </li>
-                  <% if user_signed_in? %>
-                    <% if post.already_liked?(current_user) %>
-                      <li>
-                        <%= link_to post_like_path(post), class: "post_action_btn post_liked", method: :delete do %>
-                          <i class="fas fa-heart"></i>
-                          <span><%= post.likes.count %></span>
-                        <% end %>
-                      </li>
-                    <% else %>
-                      <li>
-                        <%= link_to post_likes_path(post), class: "post_action_btn", method: :post do %>
-                          <i class="far fa-heart"></i>
-                          <span><%= post.likes.count if post.likes.count > 0 %></span>
-                        <% end %>
-                      </li>
-                    <% end %>
-                  <% else %>
-                    <li>
-                      <%= link_to post_likes_path(post), class: "post_action_btn", method: :post do %>
-                        <i class="far fa-heart"></i>
-                        <span><%= post.likes.count if post.likes.count > 0 %></span>
-                      <% end %>
-                    </li>
-                  <% end %>
+                  <%= render partial: '/likes/like', locals: { post: post } %>
                 </ul>
                 <% if user_signed_in? && current_user.id == post.user_id %>
                   <ul class="post__bottom_box__admin_actions">
