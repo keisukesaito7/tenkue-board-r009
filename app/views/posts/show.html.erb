@@ -60,13 +60,18 @@
             <div class="comment_area__list__comment__right_box__text">
               <span>コメント内容</span>
             </div>
+            <% @comments.each do |comment| %>
+              <%= comment.user.name %>
+              <% if current_user == comment.user %>
+                <%= link_to '編集', '#' %>
+                <%= link_to '削除', '#', method: :delete, data: { confirm: '本当に削除して良いですか?', cancel: 'やめる', commit: '削除する'}, title: '削除確認' %>
+              <% end %>
+            <% end %>
           </div>
         </li>
       </ul>
-      <div class="comment_area__form_box">
-        <%# コメントのフォームを設置 %>
-        <%= render 'comments/comment_form' %>
-      </div>
+      <%# コメントのフォームを設置 %>
+      <%= render 'comments/comment_form' %>
     </div>
   </div>
 </div>
