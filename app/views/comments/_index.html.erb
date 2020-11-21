@@ -1,5 +1,4 @@
 <ul class="comment_area__list">
-  <%# コメントがある場合は、全てのコメントが表示されていること %>
   <% @comments.each do |comment| %>
     <li class="comment_area__list__comment">
       <div class="comment_area__list__comment__left_box">
@@ -7,7 +6,7 @@
       </div>
       <div class="comment_area__list__comment__right_box">
         <div class="comment_area__list__comment__right_box__info">
-          <% if current_user == comment.user %>
+          <% if user_signed_in? && current_user == comment.user %>
             <span><%= link_to '編集', '#' %></span>
             <span><%= link_to '削除', '#', method: :delete, data: { confirm: '本当に削除して良いですか?', cancel: 'やめる', commit: '削除する'}, title: '削除確認' %></span>
           <% end %>
