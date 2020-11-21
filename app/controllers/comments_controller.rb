@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:create]
+  before_action :set_post, only: [:new, :create]
+  
+  def new
+    redirect_to post_path(@post.id)
+  end
   
   def create
     @comment = @post.comments.new(comment_params)
