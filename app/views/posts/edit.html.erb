@@ -6,8 +6,8 @@
       </h3>
       <%# フォームを設置 %>
       <%= form_with(model: @post, local: true ) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
         <div class="form_area">
+          <%= render 'shared/error_messages', object: f.object %>
           <div  class="form_area__field">
             <%= f.text_area :content, rows: '10', autofocus: true, placeholder: '投稿内容を入力' %>
           </div>
