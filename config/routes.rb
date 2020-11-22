@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   root to: "posts#index"
   resources :posts, except: [:index] do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
+    resource :likes, only: [:create, :destroy]
   end
 end

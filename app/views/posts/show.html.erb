@@ -30,10 +30,7 @@
               <i class="far fa-comment-alt"></i>
               <span><%= @comments.count if @post.comments.count > 0 %></span>
             </li>
-            <li>
-              <i class="far fa-heart"></i>
-              <span>いいね数</span>
-            </li>
+            <%= render partial: 'likes/like', locals: { post: @post } %>
           </ul>
           <% if user_signed_in? && current_user.id == @post.user_id %>
             <div class="post_detail__bottom_box__admin_actions">
