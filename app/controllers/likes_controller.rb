@@ -1,5 +1,4 @@
 class LikesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :destroy
   before_action :set_post
 
   def create
