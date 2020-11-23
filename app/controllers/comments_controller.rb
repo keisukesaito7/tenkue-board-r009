@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       redirect_to post_path(@post.id)
     else
       flash[:alert] = 'コメントを(140文字以内で)入力してください。'
-      redirect_to post_path(@post.id)
+      render 'posts/show'
     end
   end
 
