@@ -28,7 +28,7 @@
           <ul class="post_detail__bottom_box__user_actions">
             <li>
               <i class="far fa-comment-alt"></i>
-              <span><%= @comments.count if @post.comments.count > 0 %></span>
+              <span><%= @post.comments.count if @post.comments.count > 0 %></span>
             </li>
             <%= render partial: 'likes/like', locals: { post: @post } %>
           </ul>
