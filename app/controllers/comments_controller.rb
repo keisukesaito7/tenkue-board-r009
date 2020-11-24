@@ -25,6 +25,10 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:comment).merge(user_id: current_user.id)
   end
 
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+  
   def set_post
     @post = Post.find(params[:post_id])
   end
