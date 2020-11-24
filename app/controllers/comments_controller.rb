@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:new, :create]
+  before_action :set_post, only: [:new, :create, :destroy]
   
   def new
     redirect_to post_path(@post.id)
@@ -13,6 +13,11 @@ class CommentsController < ApplicationController
       flash[:alert] = 'コメントを(140文字以内で)入力してください。'
       render 'posts/show'
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to post_path(@post.id)
   end
 
   private
