@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: [:new, :create, :destroy]
+  before_action :set_comment, only: [:destroy]
   
   def new
     redirect_to post_path(@post.id)
