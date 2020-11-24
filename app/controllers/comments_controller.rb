@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    @comment.destroy
     redirect_to post_path(@post.id)
   end
 
