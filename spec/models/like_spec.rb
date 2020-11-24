@@ -13,7 +13,7 @@ RSpec.describe Like, type: :model do
     end
 
     context 'いいねができないとき' do
-      it 'ユーザーが紐付いていないと保存できない' do
+      it 'userが紐付いていないと保存できない' do
         @like.user = nil
         @like.valid?
         expect(@like.errors.full_messages).to include("Userを入力してください")
