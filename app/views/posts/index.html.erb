@@ -26,10 +26,12 @@
                 </div>
                 <div class="post__bottom_box">
                   <ul class="post__bottom_box__user_actions">
-                    <li>
-                      <i class="far fa-comment-alt"></i>
-                      <span>コメント数</span>
-                    </li>
+                    <%= link_to new_post_comment_path(post.id), class: "post_action_btn comment_btn" do %>
+                      <li>
+                        <i class="far fa-comment-alt"></i>
+                        <span><%= display_count(post.comments) %></span>
+                      </li>
+                    <% end %>
                     <%= render partial: 'likes/like', locals: { post: post } %>
                   </ul>
                   <% if user_signed_in? && current_user.id == post.user_id %>
