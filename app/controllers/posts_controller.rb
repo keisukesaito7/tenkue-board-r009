@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -7,6 +7,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = @post.comments.new(user_id: current_user.id) if current_user
+    @comments = @post.comments.includes(:user).order("created_at DESC")
   end
 
   def new
@@ -46,11 +48,5 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:content).merge(user_id: current_user.id)
-    end
-
-    def move_to_index
-      unless user_signed_in?
-        redirect_to root_path
-      end
     end
 end
