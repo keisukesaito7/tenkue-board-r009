@@ -22,7 +22,8 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    redirect_to post_path(@post.id)
+    @comments = @post.comments.includes(:user).order("created_at DESC")
+    render 'posts/show'
   end
 
   private
