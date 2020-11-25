@@ -27,11 +27,12 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @post.comment.update(comment_params)
+    @comments = @post.comments.includes(:user).order("created_at DESC")
+    if @comment.update(comment_params)
       redirect_to post_path(@post.id)
     else
       flash[:alert] = 'コメントを(140文字以内で)入力してください。'
-      render :edit
+      render 'posts/show'
     end
   end
 
