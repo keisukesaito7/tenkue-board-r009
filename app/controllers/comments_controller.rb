@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:new, :create, :edit, :destroy]
-  before_action :set_comment, only: [:edit, :destroy]
+  before_action :set_post, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_comment, only: [:edit, :update, :destroy]
   
   def new
     redirect_to post_path(@post.id)
@@ -24,6 +24,15 @@ class CommentsController < ApplicationController
   def edit
     @comments = @post.comments.includes(:user).order("created_at DESC")
     render 'posts/show'
+  end
+
+  def update
+    if @post.comment.update(comment_params)
+      redirect_to post_path(@post.id)
+    else
+      flash[:alert] = 'コメントを(140文字以内で)入力してください。'
+      render :edit
+    end
   end
 
   private
