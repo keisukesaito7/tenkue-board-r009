@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:new, :create, :destroy]
-  before_action :set_comment, only: [:destroy]
+  before_action :set_post, only: [:new, :create, :edit, :destroy]
+  before_action :set_comment, only: [:edit, :destroy]
   
   def new
     redirect_to post_path(@post.id)
@@ -18,6 +18,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    redirect_to post_path(@post.id)
+  end
+
+  def edit
     redirect_to post_path(@post.id)
   end
 
