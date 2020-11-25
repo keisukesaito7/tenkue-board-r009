@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_comments, only: [:edit, :update]
   
   def new
     redirect_to post_path(@post.id)
@@ -22,12 +23,10 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comments = @post.comments.includes(:user).order("created_at DESC")
     render 'posts/show'
   end
 
   def update
-    @comments = @post.comments.includes(:user).order("created_at DESC")
     if @comment.update(comment_params)
       redirect_to post_path(@post.id)
     else
@@ -43,6 +42,10 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def set_comments
+    @comments = @post.comments.includes(:user).order("created_at DESC")
   end
   
   def set_post
