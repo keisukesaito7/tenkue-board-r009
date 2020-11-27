@@ -10,6 +10,10 @@ RSpec.describe Comment, type: :model do
       it '全ての値が正しく入力されれば保存できる' do
         expect(@comment).to be_valid
       end
+      it 'commentが140文字であれば保存できる' do
+        @comment.comment = Faker::Lorem.characters(number: 140)
+        expect(@comment).to be_valid
+      end
     end
 
     context '新規投稿ができないとき' do
