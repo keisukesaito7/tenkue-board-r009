@@ -10,6 +10,16 @@ RSpec.describe User, type: :model do
       it '全ての値が正しく入力されれば保存できる' do
         expect(@user).to be_valid
       end
+      it 'passwordが8文字であれば保存できる' do
+        @user.password = Faker::Internet.password(min_length: 8, max_length: 8)
+        @user.password_confirmation = @user.password
+        expect(@user).to be_valid
+      end
+      it 'passwordが32文字であれば保存できる' do
+        @user.password = Faker::Internet.password(min_length: 32, max_length: 32)
+        @user.password_confirmation = @user.password
+        expect(@user).to be_valid
+      end
     end
 
     context '新規登録ができないとき' do
